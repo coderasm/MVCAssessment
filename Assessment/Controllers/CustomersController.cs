@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Net;
 using Assessment.Domain.Models;
 using Assessment.Domain.Repositories;
 
@@ -11,6 +12,19 @@ namespace Assessment.Controllers
         public CustomersController(ICustomerRepository repository)
         {
             this.repository = repository;
+        }
+
+        // GET: Customers/5
+        // This should be separated out into an ApiController
+        [Route("Customers/{id:int?}")]
+        public JsonResult Get(int? id)
+        {
+            if (id == null)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json("Id not present.", JsonRequestBehavior.AllowGet);
+            }
+            return Json(repository.Select(id.Value),JsonRequestBehavior.AllowGet);
         }
 
         // GET: Customers
