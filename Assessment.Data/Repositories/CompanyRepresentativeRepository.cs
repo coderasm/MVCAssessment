@@ -5,13 +5,13 @@ using Assessment.Domain.Repositories;
 
 namespace Assessment.Data.Repositories
 {
-    class CompanyRepresentativeRepository : ICompanyRepresentativeRepository
+    public class CompanyRepresentativeRepository : ICompanyRepresentativeRepository
     {
-        public List<CompanyRepresentativeInformation> CompanyRepresentatives { get; set; }
+        private static List<CompanyRepresentativeInformation> CompanyRepresentatives { get; set; }
 
-        public CompanyRepresentativeInformation FetchByCompany(int companyId)
+        public CompanyRepresentativeRepository()
         {
-            return CompanyRepresentatives.Find(c => c.Company.Id.Equals(companyId));
+            CompanyRepresentatives = new List<CompanyRepresentativeInformation>();
         }
 
         public Domain.Models.CompanyRepresentativeInformation Select(string name)
@@ -34,11 +34,11 @@ namespace Assessment.Data.Repositories
             return CompanyRepresentatives.Select(cr => cr.mapToDomain()).ToList();
         }
 
-        public bool Insert(Domain.Models.CompanyRepresentativeInformation poco)
+        public void Insert(Domain.Models.CompanyRepresentativeInformation poco)
         {
             CompanyRepresentatives.Add(new CompanyRepresentativeInformation
             {
-                City = poco.City,
+                City = poco.City, Title = poco.Title,
                 Company = new CompanyInformation
                 {
                     City = poco.Company.City, Id = poco.Company.Id, Name = poco.Company.Name,
@@ -49,15 +49,15 @@ namespace Assessment.Data.Repositories
             });
         }
 
-        public bool Update(Domain.Models.CompanyRepresentativeInformation poco)
+        public void Update(Domain.Models.CompanyRepresentativeInformation poco)
         {
-            var ccr = CompanyRepresentatives.FindAll(cr => cr.Id.Equals(poco.Id));
-
+            CompanyRepresentatives.Find(cr => cr.Id.Equals(poco.Id)).mapFromDomain(poco);
         }
 
         public bool Delete(int id)
         {
-            CompanyRepresentatives.re
+            var companyRepresentativeToRemove = CompanyRepresentatives.Find(cr => cr.Id.Equals(id));
+            return CompanyRepresentatives.Remove(companyRepresentativeToRemove);
         }
     }
 }

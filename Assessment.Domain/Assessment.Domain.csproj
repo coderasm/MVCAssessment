@@ -39,8 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fetchers\CompanyRepresentativeFetcher.cs" />
-    <Compile Include="Fetchers\CustomerFetcher.cs" />
     <Compile Include="Models\CompanyInformation.cs" />
     <Compile Include="Models\CompanyRepresentativeInformation.cs" />
     <Compile Include="Models\CustomerInformation.cs" />

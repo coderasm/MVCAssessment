@@ -7,11 +7,11 @@ namespace Assessment.Data.Models
         {
             return new Domain.Models.CompanyInformation
             {
-                City = this.City,
-                Id = this.Id,
-                Name = this.Name,
-                StreetName = this.StreetName,
-                StreetNumber = this.StreetNumber
+                City = City,
+                Id = Id,
+                Name = Name,
+                StreetName = StreetName,
+                StreetNumber = StreetNumber
             };
         }
     }

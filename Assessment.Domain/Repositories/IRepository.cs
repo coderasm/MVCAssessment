@@ -6,8 +6,8 @@ namespace Assessment.Domain.Repositories
     {
         T Select(int id);
         List<T> Select();
-        bool Insert(T poco);
-        bool Update(T poco);
+        void Insert(T poco);
+        void Update(T poco);
         bool Delete(int id);
     }
 }
