@@ -24,6 +24,7 @@ namespace Assessment.Controllers
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return Json("Id not present.", JsonRequestBehavior.AllowGet);
             }
+            var customer = repository.Select(id.Value);
             return Json(repository.Select(id.Value),JsonRequestBehavior.AllowGet);
         }
 

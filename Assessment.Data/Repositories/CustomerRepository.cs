@@ -9,6 +9,7 @@ namespace Assessment.Data.Repositories
     public class CustomerRepository : ICustomerRepository {
 
         private static List<CustomerInformation> Customers { get; set; }
+        private static int IdCounter = 1;
 
         public CustomerRepository()
         {
@@ -34,7 +35,7 @@ namespace Assessment.Data.Repositories
         {//This will insert a null representative from client side
             Customers.Add(new CustomerInformation
             {//This mapping could be done by another object or third-party library
-                City = poco.City, Id = poco.Id, Name = poco.Name, Notes = poco.Notes,
+                City = poco.City, Id = IdCounter, Name = poco.Name, Notes = poco.Notes,
                 PhoneNumber = poco.PhoneNumber, StreetName = poco.StreetName,
                 StreetNumber = poco.StreetNumber,
                 //If representative is null, don't map
@@ -51,6 +52,12 @@ namespace Assessment.Data.Repositories
                     Title = poco.Representative.Title
                 }
             });
+            incrementIdCounter();
+        }
+
+        private void incrementIdCounter()
+        {
+            IdCounter++;
         }
 
         public void Update(Domain.Models.CustomerInformation poco)

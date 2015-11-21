@@ -10,10 +10,6 @@
                 this.city = ko.observable("").extend({ trackChange: true });
                 this.notes = ko.observable("").extend({ trackChange: true });
                 this.getUser = function getUser() {
-                    if (this.id() < 1 | this.id() > 4) {
-                        alert("Enter an ID between 1 and 4 inclusively.");
-                        return;
-                    }
                     $.ajax({
                         url: "/Customers/" + this.id(),
                         type: "GET",
