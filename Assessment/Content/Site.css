@@ -16,3 +16,26 @@ textarea {
     max-width: 280px;
 }
 
+/* Mutation Styles */
+.mutated {
+    background-color: yellow !important;
+}
+
+/* Input widths */
+
+input[type="text"], input[type="number"] {
+    width: 250px !important;
+}
+
+/* Border Styles */
+.border-inset-50 {
+    padding: 1%;
+    border: 1px solid #c0c0c0;
+    margin: 50px;
+}
+
+/* Colors */
+label, dt {
+    color: darkblue;
+}
+
