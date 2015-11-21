@@ -25,7 +25,12 @@ namespace Assessment.Controllers
                 return Json("Id not present.", JsonRequestBehavior.AllowGet);
             }
             var customer = repository.Select(id.Value);
-            return Json(repository.Select(id.Value),JsonRequestBehavior.AllowGet);
+            if(customer == null)
+            {
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return Json("User not found.", JsonRequestBehavior.AllowGet);
+            }
+            return Json(customer,JsonRequestBehavior.AllowGet);
         }
 
         // GET: Customers

@@ -19,7 +19,7 @@
                                 applyUser.apply(this, [data]);
                         }.bind(this),
                         error: function(data) {
-                            alert(data);
+                            alert(data.responseText);
                         }.bind(this)
                     });
                 }

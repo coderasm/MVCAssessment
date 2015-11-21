@@ -23,7 +23,11 @@ namespace Assessment.Data.Repositories
 
         public Domain.Models.CustomerInformation Select(int id)
         {
-            return Customers.Find(c => c.Id.Equals(id)).mapToDomain();
+            var customer = Customers.Find(c => c.Id.Equals(id));
+            if (customer == null)
+                return null;
+            else
+                return customer.mapToDomain();
         }
 
         public List<Domain.Models.CustomerInformation> Select()
